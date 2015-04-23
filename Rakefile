@@ -1,12 +1,17 @@
 # Encoding: utf-8
 
-task default: [:cop, :foodcritic, :spec]
+require 'rspec/core/rake_task'
+current_dir = File.dirname(__FILE__)
 
+task default: [:cop, :foodcritic, :spec]
 task all: [:default, :kitchen]
+task validate: :default
 
 desc 'Run ChefSpec unit tests'
-task :spec do
-  sh('rspec', '--format', 'documentation', 'test/unit')
+
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = '--format documentation'
+  t.pattern = File.join current_dir, 'test/unit/**/*_spec.rb'
 end
 
 desc 'Run RuboCop'

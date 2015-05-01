@@ -4,5 +4,5 @@
 name                'pdb_motd'
 license             'Apache 2.0'
 description         'Example of testing'
-version             '0.2.0'
+version             '1.0.0'
 maintainer          'Peter Burkholder'

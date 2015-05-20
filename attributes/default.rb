@@ -1,2 +1,2 @@
 default['motd']['path'] = '/etc/motd'
-default['motd']['content'] = 'Property of Secureworks'
+default['motd']['content'] = 'Property of BarclayCardUS'

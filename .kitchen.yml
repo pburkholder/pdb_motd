@@ -1,7 +1,6 @@
 ---
 driver:
   name: vagrant
-#  box: opscode-centos-6.5
   customize:
     memory: 1024
 
@@ -11,8 +10,8 @@ provisioner:
 
 
 platforms:
-  - name: centos-6.5
-  - name: centos-5.10
+  - name: centos-6.6
+  #- name: centos-5.10
 
 suites:
 - name: default

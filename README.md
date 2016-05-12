@@ -3,34 +3,22 @@ TDD for Chef Cookbooks: Getting Started
 
 ---
 
-Rationale:
-- Inductive Learners
-- Examples > Theory
-- Start simple (or even trivia)
-
----
-
-User story:
-
-- As a node's SSH login user,
-- I expect to see a login message,
-- `This system is the property of DevOpsDC`
-
----
 
 Prerequisites:
 - ChefDK:
   ```
-  curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -c current -P chefdk
+  curl https://omnitruck.chef.io/install.sh |
+    sudo bash -s -- -c current -P chefdk
   eval "$(/opt/chefdk/bin/chef shell-init bash)"
   ```
 - git:
   ```
-  git clone https://github.com/pburkholder/pdb_motd.git; cd pdb_motd
+  git clone https://github.com/pburkholder/pdb_motd.git
+  cd pdb_motd
   ```
 - Vagrant
 
----
+----
 
 Nordstom's chefDK bootstrap cookbook:
 https://github.com/Nordstrom/chefdk_bootstrap
@@ -39,7 +27,7 @@ https://github.com/Nordstrom/chefdk_bootstrap
 curl https://raw.githubusercontent.com/Nordstrom/chefdk_bootstrap/master/bootstrap | bash
 ```
 
----
+----
 
 Use 'kitchen-dokken' for testing
 
@@ -55,9 +43,22 @@ Use 'kitchen-dokken' for testing
   kitchen create # should do all the background image downloads, takes a while
   ```
 
-
-
 ---
+
+Rationale for this cookbook demo:
+- Inductive Learners
+- Examples > Theory
+- Start simple (or even trivial)
+
+----
+
+User story:
+
+- As a node's SSH login user,
+- I expect to see a login message,
+- `This system is the property of DevOpsDC`
+
+----
 
 The last developer had a 1/2 completed cookbook:
 * `recipes/default.rb` with attributes for `path`, `message`:
@@ -83,13 +84,27 @@ Plan of Attack:
   * repeat until tests pass
 * Do TDD for new ownership with above steps
 
+---
+
+Plan of Attack:
+
+* <span style="color:red">Look at the tests; try to understand them</span>
+* Run the test suite
+  * if something breaks, fix it
+  * repeat until tests pass
+* Do TDD for new ownership with above steps
+
 ----
 
 Review ChefSpec default_spec.rb
 
+Talk RSpec/ChefSpec
+
 ----
 
 Review Integration default_spec.rb
+
+Talk Test-Kitchen
 
 ----
 
@@ -101,22 +116,64 @@ rake -T
 
 ---
 
-Now run the tests
+Plan of Attack:
 
+* Look at the tests; try to understand them
+* <span style="color:red">Run the test suite</span>
+  * if something breaks, fix it
+  * repeat until tests pass
+* Do TDD for new ownership with above steps
 
-### Integration tests
+----
 
+Demo
 
+----
 
 ### Fixing borked stuff
 
 ```
 kitchen login
-/opt/chef/embedded/bin/chef-client -z -c /opt/kitchen/client.rb -j /opt/kitchen/dna.json -l warn -F doc
+/opt/chef/embedded/bin/chef-client \
+  -z -c /opt/kitchen/client.rb \
+  -j /opt/kitchen/dna.json -l warn -F doc
 ```
 
-``
+---
 
+Plan of Attack:
+
+* Look at the tests; try to understand them
+* Run the test suite
+  * if something breaks, fix it
+  * repeat until tests pass
+* <span style="color:red">Do TDD for new ownership with above steps</span>
+
+----
+
+Demo
+
+---
+
+Recap: Plan of Attack:
+
+* Look at the tests; try to understand them
+* Run the test suite
+  * if something breaks, fix it
+  * repeat until tests pass
+* Do TDD for new content with above steps
+
+----
+
+Summary:
+
+* Chef is Ruby
+* We use TDD when developing Ruby, including
+  * Rubocop/Foodcritic: style
+  * Rspec/ChefSpec: unit testing
+  * Test-Kitchen: integration testing
+
+---
 
 DISCUSSION: Why does Rakefile use shell commands instead of Ruby tasks?
 
@@ -128,10 +185,13 @@ rspec
 foodcritic .
 ```
 
+---
+
+Fini.
 
 ---
 
-# Presentation prerequisites (for OsX)
+Presentation prerequisites (for OsX)
 
 ```
 brew install npm

@@ -6,6 +6,6 @@ describe 'pdb_motd::default' do
 
   it 'should create MOTD' do
     expect(chef_run).to render_file('/etc/motd')
-      .with_content('Property of BarclayCardUS')
+      .with_content('Property of DevOpsDC')
   end
 end

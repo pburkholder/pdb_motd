@@ -3,6 +3,13 @@ TDD for Chef Cookbooks: Getting Started
 
 ---
 
+Rationale:
+- Inductive Learners
+- Examples > Theory
+- Start simple (or even trivia)
+
+---
+
 User story:
 
 - As a node's SSH login user,
@@ -21,11 +28,34 @@ Prerequisites:
   ```
   git clone https://github.com/pburkholder/pdb_motd.git; cd pdb_motd
   ```
+- Vagrant
+
+---
+
+Nordstom's chefDK bootstrap cookbook:
+https://github.com/Nordstrom/chefdk_bootstrap
+
+```
+curl https://raw.githubusercontent.com/Nordstrom/chefdk_bootstrap/master/bootstrap | bash
+```
+
+---
+
+Use 'kitchen-dokken' for testing
+
 - Docker Toolbox, then
  ```
  docker-machine create --driver virtualbox default
  eval "$(docker-machine env default)"
  ```
+- In this working dir:
+  ```
+  chef gem install kitchen-dokken
+  export KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+  kitchen create # should do all the background image downloads, takes a while
+  ```
+
+
 
 ---
 
@@ -61,27 +91,31 @@ Review ChefSpec default_spec.rb
 
 Review Integration default_spec.rb
 
+----
+
+Review Rake tasks:
+
+```
+rake -T
+```
+
 ---
 
-Review Rake tasks
-
----
+Now run the tests
 
 
+### Integration tests
 
 
-This assumed you have ChefDK 0.3.0 or higher installed
 
-EXAMPLE: Run 'rake', then fix each of the offense, and compare to `motd_fixed`
+### Fixing borked stuff
 
-If you can,
-* install VirtualBox from https://www.virtualbox.org/wiki/Downloads
-* install Vagrant from https://www.vagrantup.com/downloads.html
+```
+kitchen login
+/opt/chef/embedded/bin/chef-client -z -c /opt/kitchen/client.rb -j /opt/kitchen/dna.json -l warn -F doc
+```
 
-Now:
-1. run `kitchen converge`, then `kitchen verify`
-2. fix issues
-3. repeat at 1. until no issues
+``
 
 
 DISCUSSION: Why does Rakefile use shell commands instead of Ruby tasks?
@@ -104,8 +138,3 @@ brew install npm
 npm install -g reveal-md
 reveal-md README.md
 ```
-
-# ToDo
-
-- inspec
--

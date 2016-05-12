@@ -6,23 +6,24 @@ task default: [:cop, :foodcritic, :spec]
 task all: [:default, :kitchen]
 task validate: :default
 
-desc 'Run ChefSpec unit tests'
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--format documentation'
-end
 
-desc 'Run RuboCop'
+desc '1 Run RuboCop'
 task :cop do
   sh('rubocop')
 end
 
-desc 'Run Foodcritic'
+desc '2 Run Foodcritic'
 task :foodcritic do
   sh('foodcritic', '-f', 'any', '.')
 end
 
-desc 'Run KitchenCI'
+desc '3 Run ChefSpec unit tests'
+RSpec::Core::RakeTask.new(:spec) do |t|
+  t.rspec_opts = '--format documentation'
+end
+
+desc '4 Run KitchenCI'
 task :kitchen do
   sh('kitchen', 'converge', 'centos-6')
   sh('kitchen', 'verify', 'centos-6')

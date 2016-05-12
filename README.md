@@ -52,9 +52,9 @@ Rationale for this cookbook demo:
 
 ----
 
-User story:
+User story from Legal:
 
-- As a node's SSH login user,
+- As user connecting via SSH to a node,
 - I expect to see a login message,
 - `This system is the property of DevOpsDC`
 
@@ -98,20 +98,56 @@ Plan of Attack:
 
 Review ChefSpec default_spec.rb
 
-Talk RSpec/ChefSpec
+`spec/unit/recipes/default_spec.rb`
+
+----
+
+
+```ruby
+require 'spec_helper'
+
+describe 'pdb_motd::default' do
+  let(:chef_run) {
+    ChefSpec::SoloRunner.new.converge(described_recipe)
+  }
+
+  it 'should create MOTD' do
+    expect(chef_run).to render_file('/etc/motd')
+      .with_content('Property of DevOpsDC')
+  end
+end
+```
 
 ----
 
 Review Integration default_spec.rb
 
-Talk Test-Kitchen
+`test/integration/default/inspec/default_spec`
 
 ----
 
-Review Rake tasks:
+```ruby
+require 'inspec'
+
+describe file('/etc/motd') do
+  its(:content) { should match(/Property of DevOpsDC/) }
+end
+```
+
+----
+
+Rake default task:
 
 ```
-rake -T
+rake -n
+** Invoke default (first_time)
+** Invoke cop (first_time)
+** Execute (dry run) cop
+** Invoke foodcritic (first_time)
+** Execute (dry run) foodcritic
+** Invoke spec (first_time)
+** Execute (dry run) spec
+** Execute (dry run) default
 ```
 
 ---
@@ -126,9 +162,13 @@ Plan of Attack:
 
 ----
 
-Demo
+Demo - `rake`
 
 ----
+
+Demo - `rake kitchen`
+
+---
 
 ### Fixing borked stuff
 

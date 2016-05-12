@@ -1,4 +1,9 @@
+Peter Burkholder<br>
+@pburkholder<br>
+http://pburkholder.com | http://devopsdc.com<br>
+12 May 2016
 
+---
 
 Why care about operations?
 

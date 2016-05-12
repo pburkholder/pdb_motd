@@ -36,7 +36,7 @@ The last developer had a 1/2 completed cookbook:
      content node['motd']['message']
    end
    ```
-* `Rakefile` with test tasks:
+* `Rakefile` with test tasks
 * Tests in:
    ```
    spec/unit/recipes/default_spec.rb
@@ -52,6 +52,18 @@ Plan of Attack:
   * if something breaks, fix it
   * repeat until tests pass
 * Do TDD for new ownership with above steps
+
+----
+
+Review ChefSpec default_spec.rb
+
+----
+
+Review Integration default_spec.rb
+
+---
+
+Review Rake tasks
 
 ---
 
@@ -96,4 +108,4 @@ reveal-md README.md
 # ToDo
 
 - inspec
-- 
+-

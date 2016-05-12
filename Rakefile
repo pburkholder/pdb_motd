@@ -11,7 +11,7 @@ desc 'Run ChefSpec unit tests'
 
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = '--format documentation'
-  t.pattern = File.join current_dir, 'test/unit/**/*_spec.rb'
+#  t.pattern = File.join current_dir, 'test/unit/**/*_spec.rb'
 end
 
 desc 'Run RuboCop'

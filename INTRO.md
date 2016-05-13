@@ -49,3 +49,14 @@ Ruby is Testable<br>
 So: [let's do TDD](./README.md)
 
 (Please ASK if I skip over key bits)
+
+---
+
+blank
+
+
+---
+
+This is a reveal-md document, suitable for slides
+
+---
